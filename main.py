@@ -71,21 +71,28 @@ def ricker(duration, dt, f):
 
 class WaveletHandler(webapp2.RequestHandler):
 
+    """
+    Handler for serving wavelet data
+    """
     def get(self):
 
+        # Read the parameters out of the http request
         f = float(self.request.get("f"))
         phase = float(self.request.get("phase"))
 
-            
+        # hard coded timescale
         duration = 1.0
         dt = .001
 
+        # Make the wavelet and rotate the phase if need be
         wavelet = ricker(duration, dt, f)
         if phase != 0.0:
             wavelet = rotate_phase(wavelet, phase)
             
         t = np.arange(0,wavelet.size)*dt
 
+        # Make the data structure, convert to lists as JSON won't
+        # parse np arrays
         data = {"wavelet": wavelet.tolist(),
                 "t": t.tolist()}
 
@@ -96,6 +103,9 @@ class WaveletHandler(webapp2.RequestHandler):
 
 class ExplorerHandler(webapp2.RequestHandler):
 
+    """
+    Generates the htmlpage
+    """
     def get(self):
 
 
@@ -114,10 +124,16 @@ class ExplorerHandler(webapp2.RequestHandler):
 class MainHandler(webapp2.RequestHandler):
 
     def get(self):
-        pass
+        
+        template = env.get_template("main.html")
+        
+        html = template.render()
+
+        self.response.write(html)
         
 
 app  = webapp2.WSGIApplication([
+    ('/', MainHandler),
     ('/explore', ExplorerHandler),
     ('/wavelet', WaveletHandler)],
     debug=True)
