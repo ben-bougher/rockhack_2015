@@ -1,4 +1,0 @@
-wavelet_setup = function(plot_div, width, height){
-
-    
-    var plot_svg = d3.select(plot_div).append("svg")
