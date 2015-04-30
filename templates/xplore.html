@@ -1,0 +1,54 @@
+{% extends "base_template.html" %} 
+{% block title %}Wavely{% endblock %} 
+
+{% block content %}
+
+<!-- JAVASCRIPT and DATA
+================================================================ -->
+<script src="static/js/jquery.canvasjs.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="static/js/wavelet.js"></script>
+
+
+<div class="container">
+  <div class="panel panel-default">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Wavelet</h3>
+    </div>
+
+    <div class="panel-body">
+      <p class="lead"> 
+	Explore the frequency and phase of a wavelet
+      </p>
+      <div class="model-plot"> <!-- Helps with CSS -->
+        <div class="col-md-8" id="plot-container">
+        </div>
+	<div class="col-md-4" id="plot-controls">
+
+	  <div class="row">
+	    <label for=frequency-slider>Frequency</label>
+	    <input type=range id=frequency-slider min={{min_f}} 
+		   value={{f}} max={{max_f}} step=1>
+	    <output for=frequency-slider id=frequency-output>
+	      {{f}}</output>
+	  </div>
+
+	  <div class="row">
+	  <label for=phase-slider>Phase</label>
+	  
+	    <input type=range id=phase-slider min=-3.14 value={{phase}} 
+		   max=3.14 step=.1>
+	    <output for=phase-slider id=phase-output>
+	      {{phase}}
+	    </output>
+	  </div>
+	</div>
+      </div> <!-- End of model-plot -->
+    </div> <!-- End of panel body -->
+  </div> <!-- End of panel -->
+</div><!-- End of container -->
+
+
+
+{% endblock %}

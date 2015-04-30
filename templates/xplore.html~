@@ -1,0 +1,12 @@
+{% extends "base_template.html" %} 
+{% block title %}Inversion Perversion{% endblock %} 
+
+{% block content %}
+
+<!-- JAVASCRIPT and DATA
+================================================================ -->
+<script src="static/js/jquery.canvasjs.min.js"></script>
+
+
+
+{% endblock %}
