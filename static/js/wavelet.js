@@ -9,6 +9,7 @@ $(function(){
 	.attr("height",height)
 	.attr("width", width);
 
+    // append a plotting group to the svg
     var plot = plot_svg.append("g");
 
     // Make the axis scales. These will eventually map data 
